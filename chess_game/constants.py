@@ -2,7 +2,7 @@ import pygame
 import os
 
 largeur, longueur = 760,760
-ligne, colonne = 8,8
+lignes, colonnes = 8,8
 case = largeur/12
 
 
