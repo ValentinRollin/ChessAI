@@ -73,3 +73,53 @@ class Pawn(Piece) :
                         if piece.color != self.color:
                             self.availables_moves.append((ligne+1,col+1))
         return self.available_moves
+
+
+class Rook(Piece):
+
+    def __init__(self, case, image, color, type, ligne, col):
+        super().__init__(case, image, color, type, ligne, col)
+
+    def get_available_moves(self, ligne, col, Board):
+        self.clear_available_moves()
+
+        for i in range(ligne+1,8): #mouvement devant
+            if Board[i][col] == 0 :
+                self.availables_moves.append((i,col)) 
+            else : 
+                if Board[i][col].color != self.color :
+                    self.availables_moves.append((i,col))
+                    break
+                else: 
+                    break 
+                    
+        for j in range(ligne-1,-1,-1): #mouvement derriere
+            if Board[j][col] == 0:
+                self.availables_moves.append((j,col))
+            else:
+                if Board[j][col].color != self.color:
+                    self.availables_moves.append((j,col))
+                    break
+                else :
+                    break
+
+        for i in range(col+1,8): #mouvement droite
+            if Board[ligne][i] == 0:
+                self.availables_moves.append((ligne,i))
+            else:
+                if Board[i][col].color != self.color:
+                    self.availables_moves.append((ligne,i))
+                    break
+                else :
+                    break
+        for j in range(col-1,-1,-1) : #mouvement gauche
+            if Board[ligne][j] == 0:
+                self.availables_moves.append((ligne,j))
+            else:
+                if Board[ligne,j].color != self.color:
+                    self.availables_moves.append((ligne,j))
+                    break
+                else:
+                    break
+
+        return self.availables_moves
