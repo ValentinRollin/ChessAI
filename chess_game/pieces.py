@@ -123,3 +123,78 @@ class Rook(Piece):
                     break
 
         return self.availables_moves
+
+
+class Bishop(Piece):
+
+    def __init__(self, case, image, color, type, ligne, col):
+        super().__init__(case, image, color, type, ligne, col)
+
+    def get_available_moves(self, ligne, col, Board):
+        self.clear_available_moves()
+
+        #diagonale bas droite
+        ligne_i = ligne+1
+        col_i = col+1
+        while ligne_i <= 7 and col_i <= 7: 
+            if Board[ligne_i][col_i] == 0:
+                self.availables_moves.append((ligne_i,col_i))
+                ligne_i += 1
+                col_i += 1
+
+            else : 
+                if Board[ligne_i][col_i].color != self.color:
+                    self.availables_moves.append((ligne_i,col_i))
+                    break
+                else : 
+                    break
+
+        #diagonale haut gauche
+        ligne_i = ligne -1
+        col_i = col -1
+        while ligne_i >= 0 and col_i >= 0:
+            if Board[ligne_i][col_i] == 0:
+                self.availables_moves.append((ligne_i,col_i))
+                ligne_i -= 1
+                col_i -= 1
+
+            else :
+                if Board[ligne_i][col_i].color != self.color :
+                    self.availables_moves.append((ligne_i, col_i))
+                    break
+                else : 
+                    break
+        
+        #diagonale bas gauche
+        ligne_i = ligne + 1 
+        col_i = col - 1
+        while ligne_i <= 7 and col_i >= 0 : 
+            if Board[ligne_i][col_i] == 0 :
+                self.availables_moves.append((ligne_i,col_i))
+                ligne_i += 1
+                col_i -= 1
+            else :
+                if Board[ligne_i, col_i].color != self.color :
+                    self.availables_moves.append((ligne_i,col_i))
+                    break
+                else : 
+                    break
+
+        #diagonale haut droite
+        ligne_i = ligne - 1
+        col_i = col + 1
+        while ligne_i >= 0 and col_i <= 7: 
+            if Board[ligne_i][col_i] == 0:
+                self.availables_moves.append((ligne_i, col_i))
+                ligne_i -= 1
+                col_i -= 1
+            else :
+                if Board[ligne_i][col_i].color != self.color :
+                    self.availables_moves.append((ligne_i,col_i))
+                    break
+                else :
+                    break
+
+        return self.availables_moves
+
+    
