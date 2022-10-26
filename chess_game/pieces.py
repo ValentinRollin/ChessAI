@@ -18,7 +18,7 @@ class Piece :
         self.col = col
         self.calc_pos()
 
-    def calc_pos():
+    def calc_pos(self):
         self.x = self.col*self.case
         self.y = self.ligne*self.case
 
@@ -360,5 +360,56 @@ class Queen(Piece):
                     break
                 else:
                     break
-                
+
+        return self.availables_moves
+
+class King(Piece):
+
+    def __init__(self, case, image, color, type, ligne, col):
+        super().__init__(case, image, color, type, ligne, col)
+
+    def get_available_moves(self, ligne, col, Board):
+        self.clear_available_moves()   
+
+        #cas haut milieu
+        if ligne -1 >= 0 :
+            if Board[ligne -1][col] == 0 or Board[ligne -1][col].color != self.color:
+                self.availables_moves.append((ligne-1, col))
+
+        #cas bas milieu
+        if ligne +1 < 8 :
+            if Board[ligne +1][col] == 0 or Board[ligne +1][col].color != self.color:
+                self.availables_moves.append((ligne+1, col))
+
+        #cas gauche milieu
+        if col -1 >= 0 :
+            if Board[ligne][col-1] == 0 or Board[ligne][col -1].color != self.color:
+                self.availables_moves.append((ligne, col -1))
+        
+        #cas droite milieu
+        if col +1 < 8 :
+            if Board[ligne][col +1] == 0 or Board[ligne][col +1].color != self.color:
+                self.availables_moves.append((ligne, col +1))
+
+        #cas haut droite
+        if ligne -1 >= 0 and col +1 < 8:
+            if Board[ligne -1][col+1] == 0 or Board[ligne -1][col+1].color != self.color:
+                self.availables_moves.append((ligne-1, col+1))                
+        
+        #cas bas droite
+        if ligne +1 < 8 and col +1 < 8 :
+            if Board[ligne +1][col +1] == 0 or Board[ligne +1][col +1].color != self.color:
+                self.availables_moves.append((ligne +1, col +1))
+
+        #cas bas gauche
+        if ligne +1 < 8 and col -1 >= 0 :
+            if Board[ligne +1][col -1] == 0 or Board[ligne +1][col -1].color != self.color:
+                self.availables_moves.append((ligne +1, col -1))
+
+        #cas haut gauche
+        if ligne -1 >= 0 and col -1 >= 0 :
+            if Board[ligne -1][col -1] == 0 or Board[ligne -1][col -1].color != self.color:
+                self.availables_moves.append((ligne -1, col -1))
+
+
         return self.availables_moves
