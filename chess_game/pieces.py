@@ -246,3 +246,119 @@ class Knight(Piece):
                 self.availables_moves.append((ligne -2, col-1))        
         
         return self.availables_moves
+
+
+class Queen(Piece):
+
+    def __init__(self, case, image, color, type, ligne, col):
+        super().__init__(case, image, color, type, ligne, col)
+
+    def get_available_moves(self, ligne, col, Board):
+        self.clear_available_moves()
+
+        #Mouvement de la reine = mouvement du fou + mouvement de la tour, donc
+        #Mouvement du fou :
+
+        #diagonale bas droite
+        ligne_i = ligne+1
+        col_i = col+1
+        while ligne_i <= 7 and col_i <= 7: 
+            if Board[ligne_i][col_i] == 0:
+                self.availables_moves.append((ligne_i,col_i))
+                ligne_i += 1
+                col_i += 1
+
+            else : 
+                if Board[ligne_i][col_i].color != self.color:
+                    self.availables_moves.append((ligne_i,col_i))
+                    break
+                else : 
+                    break
+
+        #diagonale haut gauche
+        ligne_i = ligne -1
+        col_i = col -1
+        while ligne_i >= 0 and col_i >= 0:
+            if Board[ligne_i][col_i] == 0:
+                self.availables_moves.append((ligne_i,col_i))
+                ligne_i -= 1
+                col_i -= 1
+
+            else :
+                if Board[ligne_i][col_i].color != self.color :
+                    self.availables_moves.append((ligne_i, col_i))
+                    break
+                else : 
+                    break
+        
+        #diagonale bas gauche
+        ligne_i = ligne + 1 
+        col_i = col - 1
+        while ligne_i <= 7 and col_i >= 0 : 
+            if Board[ligne_i][col_i] == 0 :
+                self.availables_moves.append((ligne_i,col_i))
+                ligne_i += 1
+                col_i -= 1
+            else :
+                if Board[ligne_i, col_i].color != self.color :
+                    self.availables_moves.append((ligne_i,col_i))
+                    break
+                else : 
+                    break
+
+        #diagonale haut droite
+        ligne_i = ligne - 1
+        col_i = col + 1
+        while ligne_i >= 0 and col_i <= 7: 
+            if Board[ligne_i][col_i] == 0:
+                self.availables_moves.append((ligne_i, col_i))
+                ligne_i -= 1
+                col_i -= 1
+            else :
+                if Board[ligne_i][col_i].color != self.color :
+                    self.availables_moves.append((ligne_i,col_i))
+                    break
+                else :
+                    break    
+
+        #Mouvement de la tour :
+        for i in range(ligne+1,8): #mouvement devant
+            if Board[i][col] == 0 :
+                self.availables_moves.append((i,col)) 
+            else : 
+                if Board[i][col].color != self.color :
+                    self.availables_moves.append((i,col))
+                    break
+                else: 
+                    break 
+                    
+        for j in range(ligne-1,-1,-1): #mouvement derriere
+            if Board[j][col] == 0:
+                self.availables_moves.append((j,col))
+            else:
+                if Board[j][col].color != self.color:
+                    self.availables_moves.append((j,col))
+                    break
+                else :
+                    break
+
+        for i in range(col+1,8): #mouvement droite
+            if Board[ligne][i] == 0:
+                self.availables_moves.append((ligne,i))
+            else:
+                if Board[i][col].color != self.color:
+                    self.availables_moves.append((ligne,i))
+                    break
+                else :
+                    break
+        for j in range(col-1,-1,-1) : #mouvement gauche
+            if Board[ligne][j] == 0:
+                self.availables_moves.append((ligne,j))
+            else:
+                if Board[ligne,j].color != self.color:
+                    self.availables_moves.append((ligne,j))
+                    break
+                else:
+                    break
+                
+        return self.availables_moves
