@@ -7,7 +7,8 @@ case = largeur/12
 
 
 marron = (87,16,16)
-blanc = (255,255,255)
+White = (255,255,255)
+Green = (0, 255, 0)
 
 Path = "chess_game/chess_images"
 

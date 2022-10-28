@@ -9,7 +9,7 @@ class newBoard:
         self.case = case
         self.win = win
         self.lignes = lignes
-        self.colonne = colonnes
+        self.colonnes = colonnes
         self.Board = []
         self.create_Board()
 
@@ -93,7 +93,13 @@ class newBoard:
     def draw_piece(self, piece, Win):
         Win.blit(piece.image, (piece.x, piece.y))
 
+    def draw_pieces(self):
+        for ligne in range(self.lignes):
+            for col in range(self.colonnes):
+                if self.Board[ligne][col] != 0:
+                    self.draw_piece(self.Board[ligne][col],self.win)
 
+                    
 
 
 
