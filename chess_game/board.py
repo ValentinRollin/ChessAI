@@ -84,11 +84,11 @@ class newBoard:
                 piece.first_move = False
 
     def draw_Board(self):
-        self.win.fill(marron)
+        self.win.fill(Black)
 
         for ligne in range (self.lignes) :
             for col in range(ligne%2, colonnes, 2):
-                pygame.draw.react(self.win, blanc, (case*(ligne), case*(col), case, case))
+                pygame.draw.react(self.win, White, (case*(ligne), case*(col), case, case))
 
     def draw_piece(self, piece, Win):
         Win.blit(piece.image, (piece.x, piece.y))

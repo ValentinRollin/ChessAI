@@ -6,7 +6,7 @@ lignes, colonnes = 8,8
 case = largeur/12
 
 
-marron = (87,16,16)
+Black = (87,16,16)
 White = (255,255,255)
 Green = (0, 255, 0)
 
